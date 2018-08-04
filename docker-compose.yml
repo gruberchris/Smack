@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  smack.topicsapi:
+    image: ${DOCKER_REGISTRY}smacktopicsapi
+    build:
+      context: .
+      dockerfile: Smack.TopicsApi/Dockerfile
+
+  smack.postsapi:
+    image: ${DOCKER_REGISTRY}smackpostsapi
+    build:
+      context: .
+      dockerfile: Smack.PostsApi/Dockerfile
+
