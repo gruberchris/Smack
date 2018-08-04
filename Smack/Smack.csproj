@@ -7,8 +7,6 @@
     <IsPackable>false</IsPackable>
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
-    <UserSecretsId>50fc05ba-c495-4111-b2c2-a86bba74d61f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

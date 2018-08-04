@@ -13,10 +13,3 @@ services:
       context: .
       dockerfile: Smack.PostsApi/Dockerfile
 
-
-  smack:
-    image: ${DOCKER_REGISTRY}smack
-    build:
-      context: .
-      dockerfile: Smack/Dockerfile
-
