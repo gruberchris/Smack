@@ -18,11 +18,11 @@ namespace Smack.Data.Repositories
             _topicContext = new TopicContext(settings);
         }
 
-        public async Task AddTopic(Topic item)
+        public async Task AddTopic(Topic topic)
         {
-            item.CreatedOn = DateTime.Now;
+            topic.CreatedOn = DateTime.Now;
 
-            await _topicContext.Topics.InsertOneAsync(item);
+            await _topicContext.Topics.InsertOneAsync(topic);
         }
 
         public async Task<string> CreateIndex()

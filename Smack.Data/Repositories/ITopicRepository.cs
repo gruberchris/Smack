@@ -12,7 +12,7 @@ namespace Smack.Data.Repositories
 
         Task<Topic> GetTopic(string topicId);
 
-        Task AddTopic(Topic item);
+        Task AddTopic(Topic topic);
 
         Task<bool> RemoveTopic(string topicId);
 
