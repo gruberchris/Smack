@@ -8,9 +8,9 @@ namespace Smack.TopicsApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class TopicsController : ControllerBase
     {
-        // GET api/values
+        // GET api/topics
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
