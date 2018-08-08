@@ -10,15 +10,13 @@ namespace Smack.Data.Repositories
     {
         Task<IEnumerable<Topic>> GetAllTopics();
 
-        Task<Topic> GetTopic(string id);
-
-        Task<IEnumerable<Topic>> GetTopic(string bodyText, DateTime updatedFrom, long headerSizeLimit);
+        Task<Topic> GetTopic(string topicId);
 
         Task AddTopic(Topic item);
 
-        Task<bool> RemoveTopic(string id);
+        Task<bool> RemoveTopic(string topicId);
 
-        Task<bool> UpdateTopic(string id, string body);
+        Task<bool> UpdateTopic(string topicId, string title, string ownerUserId);
 
         Task<bool> RemoveAllTopics();
 
