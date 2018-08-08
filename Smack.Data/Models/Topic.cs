@@ -17,5 +17,14 @@ namespace Smack.Data.Models
 
         [BsonElement]
         public string Title { get; set; }
+
+        [BsonElement]
+        public DateTime CreatedOn { get; set; }
+
+        [BsonElement]
+        public DateTime LastModifiedOn { get; set; }
+
+        [BsonElement]
+        public string OwnerUserId { get; set; }
     }
 }
