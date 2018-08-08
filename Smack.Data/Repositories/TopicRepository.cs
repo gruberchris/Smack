@@ -20,6 +20,8 @@ namespace Smack.Data.Repositories
 
         public async Task AddTopic(Topic item)
         {
+            item.CreatedOn = DateTime.Now;
+
             await _topicContext.Topics.InsertOneAsync(item);
         }
 
@@ -35,36 +37,38 @@ namespace Smack.Data.Repositories
             return await _topicContext.Topics.Find(_ => true).ToListAsync();
         }
 
-        public async Task<Topic> GetTopic(string id)
+        public async Task<Topic> GetTopic(string topicId)
         {
-            var internalId = GetInternalId(id);
+            var internalId = RepositoryUtils.GetInternalId(topicId);
 
-            return await _topicContext.Topics.Find(topic => topic.TopicId == id || topic.Id == internalId).FirstOrDefaultAsync();
+            return await _topicContext.Topics.Find(topic => topic.TopicId == topicId || topic.Id == internalId).FirstOrDefaultAsync();
         }
 
-        private ObjectId GetInternalId(string id)
+        public async Task<bool> RemoveAllTopics()
         {
-            return ObjectId.TryParse(id, out var internalId) ? internalId : ObjectId.Empty;
+            var actionResult = await _topicContext.Topics.DeleteManyAsync(new BsonDocument());
+
+            return actionResult.IsAcknowledged && actionResult.DeletedCount > 0;
         }
 
-        public Task<IEnumerable<Topic>> GetTopic(string bodyText, DateTime updatedFrom, long headerSizeLimit)
+        public async Task<bool> RemoveTopic(string topicId)
         {
-            throw new NotImplementedException();
+            var actionResult = await _topicContext.Topics.DeleteOneAsync(Builders<Topic>.Filter.Eq("TopicId", topicId));
+
+            return actionResult.IsAcknowledged && actionResult.DeletedCount > 0;
         }
 
-        public Task<bool> RemoveAllTopics()
+        public async Task<bool> UpdateTopic(string topicId, string title, string ownerUserId)
         {
-            throw new NotImplementedException();
-        }
+            var filter = Builders<Topic>.Filter.Eq(s => s.TopicId, topicId);
 
-        public Task<bool> RemoveTopic(string id)
-        {
-            throw new NotImplementedException();
-        }
+            var update = Builders<Topic>.Update.Set(s => s.Title, title)
+                .Set(s => s.OwnerUserId, ownerUserId)
+                .CurrentDate(s => s.LastModifiedOn);
 
-        public Task<bool> UpdateTopic(string id, string body)
-        {
-            throw new NotImplementedException();
+            var actionResult = await _topicContext.Topics.UpdateOneAsync(filter, update);
+
+            return actionResult.IsAcknowledged && actionResult.ModifiedCount > 0;
         }
     }
 }
