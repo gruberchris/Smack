@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Smack.Data.Models;
 using Smack.Data.Repositories;
 using Smack.TopicsApi.Models;
