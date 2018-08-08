@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Smack.Data.Models;
 using Smack.Data.Repositories;
 using Smack.TopicsApi.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Smack.TopicsApi.Controllers
 {
