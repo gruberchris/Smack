@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Smack.Data.Models;
+using Smack.Data.Repositories;
+using Smack.TopicsApi.Models;
 
 namespace Smack.TopicsApi.Controllers
 {
@@ -10,36 +13,46 @@ namespace Smack.TopicsApi.Controllers
     [ApiController]
     public class TopicsController : ControllerBase
     {
-        // GET api/topics
+        private readonly ITopicRepository _topicRepository;
+
+        public TopicsController(ITopicRepository topicRepository)
+        {
+            _topicRepository = topicRepository;
+        }
+
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<IEnumerable<Topic>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return await _topicRepository.GetAllTopics();
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet("{topicId}")]
+        public async Task<Topic> Get(string topicId)
         {
-            return "value";
+            return await _topicRepository.GetTopic(topicId) ?? new Topic();
         }
 
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] TopicParam topicParam)
         {
+            _topicRepository.AddTopic(new Topic
+            {
+                TopicId = topicParam.TopicId,
+                Title = topicParam.TopicId,
+                OwnerUserId = topicParam.OwnerUserId
+            });
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{topicId}")]
+        public void Put(string topicId, [FromBody] TopicParam topicParam)
         {
+            _topicRepository.UpdateTopic(topicId, topicParam.Title, topicParam.OwnerUserId);
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{topicId}")]
+        public void Delete(string topicId)
         {
+            _topicRepository.RemoveTopic(topicId);
         }
     }
 }
