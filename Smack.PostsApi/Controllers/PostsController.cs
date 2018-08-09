@@ -8,7 +8,7 @@ namespace Smack.PostsApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class PostsController : ControllerBase
     {
         // GET api/values
         [HttpGet]
