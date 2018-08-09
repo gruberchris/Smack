@@ -5,7 +5,7 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>e1872f3d-a6ab-45ef-b406-5c574046afbe</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/values</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/topics</DockerServiceUrl>
     <DockerServiceName>smack.topicsapi</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
