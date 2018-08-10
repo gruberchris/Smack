@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Smack.Data.Contexts;
 using Smack.Data.Models;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Smack.Data.Repositories
 {
