@@ -36,7 +36,7 @@ namespace Smack.TopicsApi.Controllers
             _topicRepository.AddTopic(new Topic
             {
                 TopicId = topicParam.TopicId,
-                Title = topicParam.TopicId,
+                Title = topicParam.Title,
                 OwnerUserId = topicParam.OwnerUserId
             });
         }
