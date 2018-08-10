@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System;
+using System.Collections.Generic;
 
 namespace Smack.Data.Models
 {
@@ -12,19 +10,22 @@ namespace Smack.Data.Models
         [BsonId]
         public ObjectId Id { get; set; }
 
-        [BsonElement]
+        [BsonElement("topicId")]
         public string TopicId { get; set; }
 
-        [BsonElement]
+        [BsonElement("title")]
         public string Title { get; set; }
 
-        [BsonElement]
+        [BsonElement("createdOn")]
         public DateTime CreatedOn { get; set; }
 
-        [BsonElement]
+        [BsonElement("lastModifiedOn")]
         public DateTime LastModifiedOn { get; set; }
 
-        [BsonElement]
+        [BsonElement("ownerUserId")]
         public string OwnerUserId { get; set; }
+
+        [BsonElement("posts")]
+        public IEnumerable<Post> Posts { get; set; }
     }
 }
