@@ -12,8 +12,8 @@ namespace Smack.Data.Models
         [BsonElement("postId")]
         public string PostId { get; set; }
 
-        [BsonElement("text")]
-        public string Text { get; set; }
+        [BsonElement("postText")]
+        public string PostText { get; set; }
 
         [BsonElement("createdOn")]
         public DateTime CreatedOn { get; set; }
