@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Smack.Data.Models;
+using Smack.Data.Repositories;
+using Smack.PostsApi.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Smack.PostsApi.Controllers
 {
@@ -10,36 +11,46 @@ namespace Smack.PostsApi.Controllers
     [ApiController]
     public class PostsController : ControllerBase
     {
-        // GET api/values
+        private readonly IPostRepository _postRepository;
+
+        public PostsController(IPostRepository postRepository)
+        {
+            _postRepository = postRepository;
+        }
+
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<IEnumerable<Post>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return await _postRepository.GetAllPosts();
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet("{postId}")]
+        public async Task<Post> Get(string postId)
         {
-            return "value";
+            return await _postRepository.GetPost(postId) ?? new Post();
         }
 
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] PostParam postParam)
         {
+            _postRepository.AddPost(new Post
+            {
+                PostId = postParam.PostId,
+                PostText = postParam.PostText,
+                OwnerUserId = postParam.OwnerUserId
+            });
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{postId}")]
+        public void Put(string postId, [FromBody] PostParam postParam)
         {
+            _postRepository.UpdatePost(postId, postParam.PostText, postParam.OwnerUserId);
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{postId}")]
+        public void Delete(string postId)
         {
+            _postRepository.RemovePost(postId);
         }
     }
 }
