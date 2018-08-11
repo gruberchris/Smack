@@ -23,5 +23,8 @@ namespace Smack.Data.Models
 
         [BsonElement("ownerUserId")]
         public string OwnerUserId { get; set; }
+
+        [BsonElement("topic")]
+        public Topic Topic { get; set; }
     }
 }

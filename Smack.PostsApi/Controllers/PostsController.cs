@@ -37,7 +37,8 @@ namespace Smack.PostsApi.Controllers
             {
                 PostId = postParam.PostId,
                 PostText = postParam.PostText,
-                OwnerUserId = postParam.OwnerUserId
+                OwnerUserId = postParam.OwnerUserId,
+                Topic = postParam.Topic
             });
         }
 

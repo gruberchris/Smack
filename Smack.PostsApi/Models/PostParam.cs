@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Smack.Data.Models;
 
 namespace Smack.PostsApi.Models
 {
@@ -12,5 +9,7 @@ namespace Smack.PostsApi.Models
         public string PostText { get; set; }
 
         public string OwnerUserId { get; set; }
+
+        public Topic Topic { get; set; }
     }
 }
