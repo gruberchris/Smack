@@ -53,7 +53,9 @@ namespace Smack.Data.Repositories
 
         public async Task<bool> RemoveSmackUser(string id)
         {
-            var actionResult = await _smackUserContext.SmackUsers.DeleteOneAsync(Builders<SmackUser>.Filter.Eq("Id", id));
+            var objectId = RepositoryUtils.GetObjectId(id);
+
+            var actionResult = await _smackUserContext.SmackUsers.DeleteOneAsync(Builders<SmackUser>.Filter.Eq("Id", objectId));
 
             return actionResult.IsAcknowledged && actionResult.DeletedCount > 0;
         }
