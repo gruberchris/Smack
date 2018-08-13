@@ -1,13 +1,10 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Driver;
+using System;
 
 namespace Smack.Data.Models
 {
     public class Post : SmackModelBase
     {
-        [BsonElement("postId")]
-        public string PostId { get; set; }
-
         [BsonElement("postText")]
         public string PostText { get; set; }
 

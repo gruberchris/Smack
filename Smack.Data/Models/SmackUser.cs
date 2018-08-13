@@ -4,9 +4,6 @@ namespace Smack.Data.Models
 {
     public class SmackUser : SmackModelBase
     {
-        [BsonElement("smackUserId")]
-        public string SmackUserId { get; set; }
-
         [BsonElement("firstName")]
         public string FirstName { get; set; }
 

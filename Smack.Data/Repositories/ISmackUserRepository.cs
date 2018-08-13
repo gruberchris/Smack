@@ -8,13 +8,13 @@ namespace Smack.Data.Repositories
     {
         Task<IEnumerable<SmackUser>> GetAllSmackUsers();
 
-        Task<SmackUser> GetSmackUser(string smackUserId);
+        Task<SmackUser> GetSmackUser(string id);
 
         Task AddSmackUser(SmackUser smackUser);
 
-        Task<bool> RemoveSmackUser(string smackUserId);
+        Task<bool> RemoveSmackUser(string id);
 
-        Task<bool> UpdateSmackUser(string smackUserId, string firstName, string lastName, string nickName, string email);
+        Task<bool> UpdateSmackUser(string id, string firstName, string lastName, string nickName, string email);
 
         Task<bool> RemoveAllSmackUsers();
 

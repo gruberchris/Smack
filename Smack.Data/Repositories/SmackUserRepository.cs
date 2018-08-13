@@ -22,8 +22,6 @@ namespace Smack.Data.Repositories
         {
             smackUser.CreatedOn = DateTime.Now;
 
-            // TODO: Generate new SmackUserId
-
             await _smackUserContext.SmackUsers.InsertOneAsync(smackUser);
         }
 
@@ -39,11 +37,11 @@ namespace Smack.Data.Repositories
             return await _smackUserContext.SmackUsers.Find(_ => true).ToListAsync();
         }
 
-        public async Task<SmackUser> GetSmackUser(string smackUserId)
+        public async Task<SmackUser> GetSmackUser(string id)
         {
-            var internalId = RepositoryUtils.GetInternalId(smackUserId);
+            var objectId = RepositoryUtils.GetObjectId(id);
 
-            return await _smackUserContext.SmackUsers.Find(smackUser => smackUser.SmackUserId == smackUserId || smackUser.Id == internalId).FirstOrDefaultAsync();
+            return await _smackUserContext.SmackUsers.Find(smackUser => smackUser.Id == objectId).FirstOrDefaultAsync();
         }
 
         public async Task<bool> RemoveAllSmackUsers()
@@ -53,16 +51,18 @@ namespace Smack.Data.Repositories
             return actionResult.IsAcknowledged && actionResult.DeletedCount > 0;
         }
 
-        public async Task<bool> RemoveSmackUser(string smackUserId)
+        public async Task<bool> RemoveSmackUser(string id)
         {
-            var actionResult = await _smackUserContext.SmackUsers.DeleteOneAsync(Builders<SmackUser>.Filter.Eq("SmackUserId", smackUserId));
+            var actionResult = await _smackUserContext.SmackUsers.DeleteOneAsync(Builders<SmackUser>.Filter.Eq("Id", id));
 
             return actionResult.IsAcknowledged && actionResult.DeletedCount > 0;
         }
 
-        public async Task<bool> UpdateSmackUser(string smackUserId, string firstName, string lastName, string nickName, string email)
+        public async Task<bool> UpdateSmackUser(string id, string firstName, string lastName, string nickName, string email)
         {
-            var filter = Builders<SmackUser>.Filter.Eq(s => s.SmackUserId, smackUserId);
+            var objectId = RepositoryUtils.GetObjectId(id);
+
+            var filter = Builders<SmackUser>.Filter.Eq(s => s.Id, objectId);
 
             var update = Builders<SmackUser>.Update.Set(s => s.FirstName, firstName)
                 .Set(s => s.LastName, lastName)

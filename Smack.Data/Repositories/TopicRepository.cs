@@ -22,8 +22,6 @@ namespace Smack.Data.Repositories
         {
             topic.CreatedOn = DateTime.Now;
 
-            // TODO: Generate new TopicId
-
             await _topicContext.Topics.InsertOneAsync(topic);
         }
 
@@ -39,11 +37,11 @@ namespace Smack.Data.Repositories
             return await _topicContext.Topics.Find(_ => true).ToListAsync();
         }
 
-        public async Task<Topic> GetTopic(string topicId)
+        public async Task<Topic> GetTopic(string id)
         {
-            var internalId = RepositoryUtils.GetInternalId(topicId);
+            var objectId = RepositoryUtils.GetObjectId(id);
 
-            return await _topicContext.Topics.Find(topic => topic.TopicId == topicId || topic.Id == internalId).FirstOrDefaultAsync();
+            return await _topicContext.Topics.Find(topic => topic.Id == objectId).FirstOrDefaultAsync();
         }
 
         public async Task<bool> RemoveAllTopics()
@@ -53,16 +51,18 @@ namespace Smack.Data.Repositories
             return actionResult.IsAcknowledged && actionResult.DeletedCount > 0;
         }
 
-        public async Task<bool> RemoveTopic(string topicId)
+        public async Task<bool> RemoveTopic(string id)
         {
-            var actionResult = await _topicContext.Topics.DeleteOneAsync(Builders<Topic>.Filter.Eq("TopicId", topicId));
+            var actionResult = await _topicContext.Topics.DeleteOneAsync(Builders<Topic>.Filter.Eq("Id", id));
 
             return actionResult.IsAcknowledged && actionResult.DeletedCount > 0;
         }
 
-        public async Task<bool> UpdateTopic(string topicId, string title)
+        public async Task<bool> UpdateTopic(string id, string title)
         {
-            var filter = Builders<Topic>.Filter.Eq(s => s.TopicId, topicId);
+            var objectId = RepositoryUtils.GetObjectId(id);
+
+            var filter = Builders<Topic>.Filter.Eq(s => s.Id, objectId);
 
             var update = Builders<Topic>.Update.Set(s => s.Title, title)
                 .CurrentDate(s => s.LastModifiedOn);
