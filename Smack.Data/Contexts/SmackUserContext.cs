@@ -4,17 +4,17 @@ using Smack.Data.Models;
 
 namespace Smack.Data.Contexts
 {
-    public class PostContext
+    public class SmackUserContext
     {
         private readonly IMongoDatabase _database;
 
-        public PostContext(IOptions<Settings> settings)
+        public SmackUserContext(IOptions<Settings> settings)
         {
             var client = new MongoClient(settings.Value.ConnectionString);
 
             _database = client.GetDatabase(settings.Value.Database);
         }
 
-        public IMongoCollection<Post> Posts => _database.GetCollection<Post>("Post");
+        public IMongoCollection<SmackUser> SmackUsers => _database.GetCollection<SmackUser>("SmackUsers");
     }
 }

@@ -14,7 +14,7 @@ namespace Smack.Data.Repositories
 
         Task<bool> RemoveTopic(string topicId);
 
-        Task<bool> UpdateTopic(string topicId, string title, string ownerUserId);
+        Task<bool> UpdateTopic(string topicId, string title);
 
         Task<bool> RemoveAllTopics();
 

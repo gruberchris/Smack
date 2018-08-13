@@ -7,9 +7,9 @@ services:
       context: .
       dockerfile: Smack.TopicsApi/Dockerfile
 
-  smack.postsapi:
-    image: ${DOCKER_REGISTRY}smackpostsapi
+  smack.smackuserapi:
+    image: ${DOCKER_REGISTRY}smacksmackuserapi
     build:
       context: .
-      dockerfile: Smack.PostsApi/Dockerfile
+      dockerfile: Smack.SmackUserApi/Dockerfile
 

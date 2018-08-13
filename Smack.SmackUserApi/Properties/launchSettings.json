@@ -12,15 +12,15 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/posts",
+      "launchUrl": "api/smackuser",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Smack.PostsApi": {
+    "Smack.SmackUserApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/values",
+      "launchUrl": "api/smackuser",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

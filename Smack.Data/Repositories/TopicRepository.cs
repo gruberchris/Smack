@@ -22,6 +22,8 @@ namespace Smack.Data.Repositories
         {
             topic.CreatedOn = DateTime.Now;
 
+            // TODO: Generate new TopicId
+
             await _topicContext.Topics.InsertOneAsync(topic);
         }
 
@@ -58,12 +60,11 @@ namespace Smack.Data.Repositories
             return actionResult.IsAcknowledged && actionResult.DeletedCount > 0;
         }
 
-        public async Task<bool> UpdateTopic(string topicId, string title, string ownerUserId)
+        public async Task<bool> UpdateTopic(string topicId, string title)
         {
             var filter = Builders<Topic>.Filter.Eq(s => s.TopicId, topicId);
 
             var update = Builders<Topic>.Update.Set(s => s.Title, title)
-                .Set(s => s.OwnerUserId, ownerUserId)
                 .CurrentDate(s => s.LastModifiedOn);
 
             var actionResult = await _topicContext.Topics.UpdateOneAsync(filter, update);

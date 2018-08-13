@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smack.TopicsApi", "Smack.To
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E1872F3D-A6AB-45EF-B406-5C574046AFBE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smack.PostsApi", "Smack.PostsApi\Smack.PostsApi.csproj", "{3927D354-FF81-4CDB-A26D-54C498D1A482}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smack.SmackUserApi", "Smack.SmackUserApi\Smack.SmackUserApi.csproj", "{3927D354-FF81-4CDB-A26D-54C498D1A482}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smack.Data", "Smack.Data\Smack.Data.csproj", "{03B40B4E-BB6A-4F1E-A57A-BDBCA58E6F7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smack.Data", "Smack.Data\Smack.Data.csproj", "{03B40B4E-BB6A-4F1E-A57A-BDBCA58E6F7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

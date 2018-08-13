@@ -15,6 +15,6 @@ namespace Smack.Data.Contexts
             _database = client.GetDatabase(settings.Value.Database);
         }
 
-        public IMongoCollection<Topic> Topics => _database.GetCollection<Topic>("Topic");
+        public IMongoCollection<Topic> Topics => _database.GetCollection<Topic>("Topics");
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Smack.Data.Models;
 using Smack.Data.Repositories;
-using Smack.TopicsApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -31,20 +30,18 @@ namespace Smack.TopicsApi.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] TopicParam topicParam)
+        public void Post([FromBody] Topic topic)
         {
             _topicRepository.AddTopic(new Topic
             {
-                TopicId = topicParam.TopicId,
-                Title = topicParam.Title,
-                OwnerUserId = topicParam.OwnerUserId
+                Title = topic.Title
             });
         }
 
         [HttpPut("{topicId}")]
-        public void Put(string topicId, [FromBody] TopicParam topicParam)
+        public void Put(string topicId, [FromBody] Topic topic)
         {
-            _topicRepository.UpdateTopic(topicId, topicParam.Title, topicParam.OwnerUserId);
+            _topicRepository.UpdateTopic(topicId, topic.Title);
         }
 
         [HttpDelete("{topicId}")]

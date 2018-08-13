@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Smack.Data.Models;
 using Smack.Data.Repositories;
 
-namespace Smack.PostsApi
+namespace Smack.SmackUserApi
 {
     public class Startup
     {
@@ -28,7 +28,7 @@ namespace Smack.PostsApi
                 options.Database = Configuration.GetSection("MongoConnection:Database").Value;
             });
 
-            services.AddTransient<IPostRepository, PostRepository>();
+            services.AddTransient<ISmackUserRepository, SmackUserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
