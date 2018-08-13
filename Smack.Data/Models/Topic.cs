@@ -1,5 +1,5 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
-using System;
+using MongoDB.Driver;
 using System.Collections.Generic;
 
 namespace Smack.Data.Models
@@ -13,6 +13,6 @@ namespace Smack.Data.Models
         public IEnumerable<Post> Posts { get; set; }
 
         [BsonElement]
-        public SmackUser Owner { get; set; }
+        public MongoDBRef OwnerId { get; set; }
     }
 }
